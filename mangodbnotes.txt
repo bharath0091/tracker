@@ -1,0 +1,13 @@
+> show dbs
+local  0.078GB
+> use employees
+switched to db employees
+> db.employees.insert({name:'bharath', email:'chennupati.bharath@gmail.com'})
+WriteResult({ "nInserted" : 1 })
+> db.employees.find().pretty()
+{
+        "_id" : ObjectId("563f4c19e33bceec6efc7a5b"),
+        "name" : "bharath",
+        "email" : "chennupati.bharath@gmail.com"
+}
+>

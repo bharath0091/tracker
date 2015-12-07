@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="trackerApp">
+	<head>
+		<title>		Tracker		</title>
+
+
+	</head>
+
+	<body>
+		<h1> Tracker</h1>
+
+<input ng-model="test"/> 
+{{test}}
+<div ng-controller="myCtrl">
+		<table>
+			<thead>
+
+			<tr>
+				<th>name</th>
+				<th>email</th>
+				<th>action</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td><input ng-model="employee.name"/></td>
+				<td><input ng-model="employee.email"></td>
+				<td><button ng-click="addEmployee()">add employee</button></td>
+			</tr>
+				<tr ng-repeat="employee in employees">
+					<td>{{employee.name}}</td> 
+					<td>{{employee.email}}</td>
+                    <td><button ng-click="deleteEmployee(employee._id)">remove</button></td>
+				</tr>
+			</tbody>
+		</table>
+</div>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"> ///????????? why only it should be at last?
+		</script>
+		
+		<script src="controller/controller.js"/>
+		<script>
+            function addEmployee1() {
+                console.log("inside addEmployee1")
+            }
+        </script>
+
+	</body>
+</html>
