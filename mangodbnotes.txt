@@ -1,13 +1,39 @@
-> show dbs
-local  0.078GB
-> use employees
-switched to db employees
-> db.employees.insert({name:'bharath', email:'chennupati.bharath@gmail.com'})
-WriteResult({ "nInserted" : 1 })
-> db.employees.find().pretty()
-{
-        "_id" : ObjectId("563f4c19e33bceec6efc7a5b"),
-        "name" : "bharath",
-        "email" : "chennupati.bharath@gmail.com"
-}
->
+
+http://stackoverflow.com/questions/24621940/how-to-properly-reuse-connection-to-mongodb-across-nodejs-application-and-module
+
+ Advantages of mongodb and JSON
+ 
+ JSON is a self-describing, human readable data format.
+ 
+ Using JSON documents in our database means we don’t need an object relational mapper between our database and the applications it serves.
+ 
+ Collection :
+ 
+ If the collection does not exist, then the insert() method will create the collection.
+ 
+ Document is like a row
+ 
+ Multiple-Collections-Versus-Embedded-Documents
+ http://openmymind.net/Multiple-Collections-Versus-Embedded-Documents/
+ 
+ 
+ commands :
+ 
+ > show dbs
+ local  0.078GB
+ > use employees
+ switched to db employees
+ > db.employees.insert({name:'bharath', email:'chennupati.bharath@gmail.com'})
+ WriteResult({ "nInserted" : 1 })
+ > db.employees.find().pretty()
+ {
+         "_id" : ObjectId("563f4c19e33bceec6efc7a5b"),
+         "name" : "bharath",
+         "email" : "chennupati.bharath@gmail.com"
+ }
+ >
+ 
+ 
+ >db.template.insert({name:'leave', active : 'true',fields:{'start date' : 'date', 'end date' : 'date', 'no of days' : 'int', 'employee id' : 'id'}})
+ 
+ >db.details.insert({name:'leave', fields:{'start date' : new Date(), 'end date' : new Date() + 1, 'no of days' : 1, 'employee id' : 100}})
