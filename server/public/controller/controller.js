@@ -3,7 +3,7 @@ app.controller('myCtrl', function($scope, $http) {
 
 
     function refresh() {
-        $http.get("/rest").success(function (response) {
+        $http.get("/rest/list").success(function (response) {
                 $scope.employees=response;
                 console.log("received success response for GET request")
             }
@@ -16,9 +16,9 @@ app.controller('myCtrl', function($scope, $http) {
         console.log($scope.employee);
         //console.log($scope.test)
     $http.post("/rest", $scope.employee).success(function (response){
-        console.log("received success response for POST request")
+        console.log("received success response for POST request");
+     refresh();
     });
-        refresh();
     }
 
     $scope.deleteEmployee = function(id){
@@ -26,7 +26,7 @@ app.controller('myCtrl', function($scope, $http) {
         //console.log($scope.test)
         $http.delete("/rest/"+id).success(function (response){
             console.log("received success response for DELETE request")
-        });
         refresh();
+        });
     }
 });

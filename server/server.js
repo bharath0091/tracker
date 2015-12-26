@@ -3,7 +3,8 @@ var app = express();
 app.use(express.static(__dirname + '/public'));//????????????
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
-
+//must read
+//http://blog.mongolab.com/2013/11/deep-dive-into-connection-pooling/
 
 var action = require('./action');
 app.use('/action', action);
@@ -21,17 +22,17 @@ process.on('uncaughtException', function (err) {
     console.log('Caught exception: ' + err);
 });
 
-app.get('/rest', function(req, res) {
+app.get('/rest/list', function(req, res) {
         console.log("received get request");
-        mongoUtil.getAllDocuments('employees').toArray(function (err, docs) {
-        console.log(JSON.stringify(docs));
-        res.end(JSON.stringify(docs));
-  });
+        mongoUtil.getAllDocuments('employees', function(data){
+          res.end(JSON.stringify(data));
+       });
 });
 
 app.post('/rest', function(req, res) {
-    console.log("received post request");
+    console.log("received post request :" + JSON.stringify(req.body));
     mongoUtil.insertOneDocument('employees', req.body);
+    res.end();
 });
 
 app.delete("/rest/:id", function(req, res) {
@@ -40,6 +41,7 @@ app.delete("/rest/:id", function(req, res) {
     mongoUtil.deleteDocumentById('employees', id, function (err, results) {
         console.log(err);
         console.log(results);
+    res.end();
     })
 });
 

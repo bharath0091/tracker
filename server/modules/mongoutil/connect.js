@@ -19,19 +19,35 @@ return {
   getDb : function() {
             return _db;
           },
-  getAllDocuments : function (collectionName) {
-                        return this.getCollection(collectionName).find({});
+  getAllDocuments : function (collectionName, callback) {
+                        var stream = this.getCollection(collectionName).find({});
+                        collectStreamData(stream, callback);
+                    },
+  getDocumentById : function (collectionName, id, callback) {
+                    var stream = this.getCollection(collectionName).find({_id : ObjectID(id)}).stream();
+                     collectStreamData(stream, callback);
                     },
   insertOneDocument : function (collectionName, document) {
                         return this.getCollection(collectionName).insertOne(document);
                      },
   deleteDocumentById : function (collectionName, id, callback) {
-                        this.getCollection(collectionName).deleteOne({_id : ObjectID(id)}, function() {
+                        this.getCollection(collectionName).deleteOne({_id : ObjectID(id)}, function(err, results) {
                         callback (err, results)
                         });
                      }
 }
 };
+
+function collectStreamData(stream, callback){
+var documentsArray = [];
+stream.on('data', function(data) {
+       documentsArray.push(data);
+ });
+stream.on('end', function(data) {
+         callback(documentsArray);
+ });
+}
+
 
 
 //or u can use exports = method

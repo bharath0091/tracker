@@ -1,11 +1,13 @@
 
 File module :
-
+If the exact filename is not found, then Node.js will attempt to load the required filename with the added extensions: .js, .json, and finally .node. 
 A required module prefixed with '/' is an absolute path to the file. For example, require('/home/marco/foo.js') will load the file at /home/marco/foo.js.
 A required module prefixed with './' is relative to the file calling require(). That is, circle.js must be in the same directory as foo.js for require('./circle') to find it. 
 Without a leading '/', './', or '../' to indicate a file, the module must either be a core module or is loaded from a node_modules folder. 
 
 Folders as modules :
+
+It is convenient to organize programs and libraries into self-contained directories, and then provide a single entry point to that library. There are three ways in which a folder may be passed to require() as an argument. 
 
 If this was in a folder at ./some-library, then require('./some-library') would attempt to load ./some-library/lib/some-library.js.
 
