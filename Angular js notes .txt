@@ -5,3 +5,15 @@ Directives,
 Modules : 
 
 expressions : {{ 2 + 3 }}
+
+
+In Angular, the view is a projection of the model through the HTML template. This means that whenever the model changes, Angular refreshes the appropriate binding points, which updates the view.
+
+SCOPE :
+
+The PhoneListCtrl controller attaches the phone data to the $scope that was injected into our controller function. This scope is a prototypical descendant of the root scope that was created when the application was defined. This controller scope is available to all bindings located within the <body ng-controller="PhoneListCtrl"> tag.
+
+The concept of a scope in Angular is crucial. A scope can be seen as the glue which allows the template, model and controller to work together. Angular uses scopes, along with the information contained in the template, data model, and controller, to keep models and views separate, but in sync. Any changes made to the model are reflected in the view; any changes that occur in the view are reflected in the model.
+
+dependency injection :
+add dependencies in []

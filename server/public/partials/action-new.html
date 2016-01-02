@@ -1,0 +1,22 @@
+<div ng-controller="ActionController" xmlns="http://www.w3.org/1999/html" style="font-size: large">
+
+    <label>action name</label>
+    <input style="padding-left: 10px" type="text" name="action name" ng-model="action.name" >
+<br>
+    <label>active ?</label>
+    <input style="padding-left: 10px" type="checkbox" name="active ?" ng-model="action.active">
+    <br>
+    <label>last date</label>
+    <input style="padding-left: 10px" type="date" name="last date" ng-model="action.lastDate">
+
+<br>
+<br>
+    <div action-row>Add new row</div>
+    <br>
+    <br>
+    <button style="width: 60px; height: 20px" ng-click="addAction()"> Submit</button>
+<!--
+//http://jsfiddle.net/fess81/axq5vu41/
+    //http://ng-learn.org/2014/01/Dom-Manipulations/
+-->
+</div>

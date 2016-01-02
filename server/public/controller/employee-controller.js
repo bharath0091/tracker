@@ -1,3 +1,5 @@
+//TODO : change controller name and remove app creation
+
 		var app = angular.module('trackerApp', []);
 app.controller('myCtrl', function($scope, $http) {
 

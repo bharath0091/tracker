@@ -1,18 +1,20 @@
 
-
-angular.module('controllers', ['actionList', 'actionDetail']);
-var app = angular.module('trackerApp', ['ngRoute', 'controllers']);
+var app = angular.module('trackerApp', ['ngRoute', 'actionController', 'directives']);
 
 app.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
         when('/actions', {
             templateUrl: 'partials/action-list.html',
-            controller: 'ActionListController'
+            controller: 'ActionController'
+        }).
+        when('/action/new', {
+            templateUrl: 'partials/action-new.html',
+            controller: 'ActionController'
         }).
         when('/action/leave', {
             templateUrl: 'partials/action-detail.html',
-            controller: 'ActionDetailController'
+            controller: 'ActionController'
         }).
         otherwise({
             redirectTo: '/actions'

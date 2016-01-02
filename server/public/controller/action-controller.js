@@ -1,6 +1,6 @@
-var actionDetailModule = angular.module('actionDetail', []);
+var actionControllerModule = angular.module('actionController', []);
 
-actionDetailModule.controller('ActionDetailController', function ($scope, $http) {
+actionControllerModule.controller('ActionController', function ($scope, $http) {
     function refresh() {
         $http.get("/action/rest/list").success(function (response) {
                 $scope.actions = response;

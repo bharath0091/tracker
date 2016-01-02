@@ -1,7 +1,37 @@
 
-<div ng-controller="ActionListController">
-    <input ng-model="test"/>
-    {{test}}
-    <li><a href="#/action/leave">leave action detail</a></li>
+<div ng-controller="ActionController">
+    <table>
+        <thead>
+        <tr>
+            <th>name</th>
+            <th>active ?</th>
+            <th>creation date</th>
+            <th>last date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><input ng-model="action.name"/></td>
+            <td><input ng-model="action.active"></td>
+            <td><input ng-model="action.creationDate"></td>
+            <td><input ng-model="action.lastDate"></td>
+            <td>
+                <a href="#/action/new">add new action</a>
+            </td>
+        </tr>
+        <tr ng-repeat="action in actions">
+            <td>{{action.name}}</td>
+            <td>{{action.active}}</td>
+            <td>{{action.creationDate}}</td>
+            <td>{{action.lastDate}}</td>
+            <td>
+                <button ng-click="viewAction(action._id)">view</button>
+            </td>
+            <td>
+                <button ng-click="deleteAction(action._id)">remove</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
 </div>
