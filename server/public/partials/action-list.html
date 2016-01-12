@@ -25,7 +25,7 @@
             <td>{{action.creationDate}}</td>
             <td>{{action.lastDate}}</td>
             <td>
-                <button ng-click="viewAction(action._id)">view</button>
+                <a href="#/action/view/{{action._id}}" >view</a>
             </td>
             <td>
                 <button ng-click="deleteAction(action._id)">remove</button>

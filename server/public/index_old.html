@@ -16,22 +16,31 @@
         <thead>
 
         <tr>
+            <th>employee id</th>
             <th>name</th>
             <th>email</th>
+            <th>project</th>
             <th>action</th>
         </tr>
         </thead>
         <tbody>
         <tr>
+            <td><input ng-model="employee.id"/></td>
             <td><input ng-model="employee.name"/></td>
             <td><input ng-model="employee.email"></td>
+            <td><input ng-model="employee.project"></td>
             <td>
                 <button ng-click="addEmployee()">add employee</button>
             </td>
         </tr>
         <tr ng-repeat="employee in employees">
+            <td>{{employee.id}}</td>
             <td>{{employee.name}}</td>
             <td>{{employee.email}}</td>
+            <td>{{employee.project}}</td>
+            <td>
+                <a href="/employee-actions/employee/{{employee.id}}">view actions</a>
+            </td>
             <td>
                 <button ng-click="deleteEmployee(employee._id)">remove</button>
             </td>

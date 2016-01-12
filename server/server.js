@@ -10,6 +10,8 @@ var action = require('./action');
 app.use('/action', action);
 
 
+app.use('/employee-actions', require('./employee-actions'));
+
 //mongoUtilModule
 var mongoUtilModule = require('./modules/mongoutil');
 var mongoUtil = mongoUtilModule();

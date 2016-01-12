@@ -1,4 +1,8 @@
 <div ng-controller="ActionController" xmlns="http://www.w3.org/1999/html" style="font-size: large">
+<span ng-if="isAddActionSuccessful" ng-init="isAddActionSuccessful=false" style="color: #10ff5c">
+  Action added successfully
+</span>
+    <br>
 
     <label>action name</label>
     <input style="padding-left: 10px" type="text" name="action name" ng-model="action.name" >
@@ -8,12 +12,21 @@
     <br>
     <label>last date</label>
     <input style="padding-left: 10px" type="date" name="last date" ng-model="action.lastDate">
-
+    <br>
+<!--<label>assigned to</label>
+    &lt;!&ndash; TODO make the list dynamic&ndash;&gt;
+    <select ng-model="action.assignedTo">
+        <option value="ssp">pss</option>
+        <option value="kc">ck</option>
+        <option value="sic">ici</option>
+    </select>-->
 <br>
 <br>
     <div action-row>Add new row</div>
     <br>
     <br>
+
+    <a href="#/actions">Back</a> &nbsp;&nbsp;
     <button style="width: 60px; height: 20px" ng-click="addAction()"> Submit</button>
 <!--
 //http://jsfiddle.net/fess81/axq5vu41/

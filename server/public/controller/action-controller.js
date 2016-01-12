@@ -16,7 +16,7 @@ actionControllerModule.controller('ActionController', function ($scope, $http) {
         //console.log($scope.test)
         $http.post("/action/rest", $scope.action).success(function (response) {
             console.log("received success response for POST request");
-            refresh();
+            $scope.isAddActionSuccessful = true;
         });
     }
 

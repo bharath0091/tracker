@@ -18,6 +18,15 @@ process.on('uncaughtException', function (err) {
     console.log('Caught exception: ' + err);
 });
 
+
+router.get('/employee/:id', function(req, res) {
+    var employeeId = req.params.id;
+    console.log("received request for employee-actions for employee id" + employeeId);
+    var details = mongoUtil.getDocumentById('employees', id, function(data){
+        res.end(JSON.stringify(data[0]));
+    });
+});
+
 router.get('/rest/list', function(req, res) {
         console.log("received get request");
         mongoUtil.getAllDocuments('action', function(data){
@@ -26,7 +35,7 @@ router.get('/rest/list', function(req, res) {
   });
 
 
-router.get('/rest/view-details-by-id/:id', function(req, res) {
+router.get('/rest/view-details/:id', function(req, res) {
     var id = req.params.id;
     console.log("received get request for " + id);
     var details = mongoUtil.getDocumentById('action', id, function(data){

@@ -17,3 +17,6 @@ The concept of a scope in Angular is crucial. A scope can be seen as the glue wh
 
 dependency injection :
 add dependencies in []
+
+TODO : Why names must fixed : $scope, $routeParams, $http: 'must read' in mozilla favourite
+actionControllerModule.controller('ActionController', function ($scope, $routeParams, $http) {
