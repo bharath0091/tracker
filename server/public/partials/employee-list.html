@@ -1,17 +1,5 @@
-<!DOCTYPE html>
-<html ng-app="trackerApp">
-<head>
-    <title> Tracker </title>
-
-
-</head>
-
-<body>
-<h1> Tracker</h1>
-
-<input ng-model="test"/>
-{{test}}
-<div ng-controller="myCtrl">
+<div>
+    <label>employee list</label><br>
     <table>
         <thead>
 
@@ -48,17 +36,3 @@
         </tbody>
     </table>
 </div>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"> ///????????? why only it should be at last?
-
-</script>
-
-<script src="controller/employee-controller.js"/>
-<script>
-            function addEmployee1() {
-                console.log("inside addEmployee1")
-            }
-
-</script>
-
-</body>
-</html>

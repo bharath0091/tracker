@@ -1,9 +1,13 @@
 
-var app = angular.module('trackerApp', ['ngRoute', 'actionController', 'actionViewController', 'directives']);
+var app = angular.module('trackerApp', ['ngRoute', 'employeeController', 'actionController', 'actionViewController', 'directives']);
 
 app.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
+        when('/employees', {
+            templateUrl: 'partials/employee-list.html',
+            controller: 'EmployeeController'
+        }).
         when('/actions', {
             templateUrl: 'partials/action-list.html',
             controller: 'ActionController'
@@ -17,11 +21,9 @@ app.config(['$routeProvider',
             controller: 'ActionViewController'
         }).
         when('/action/leave', {
-            templateUrl: 'partials/action-detail.html',
+            //TODO
+            templateUrl: 'partials/',
             controller: 'ActionController'
-        }).
-        otherwise({
-            redirectTo: '/actions'
         });
     }]);
 

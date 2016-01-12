@@ -6,6 +6,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script>
 
+    <script src="controller/employee-controller.js"></script>
     <script src="controller/action-controller.js"></script>
     <script src="controller/action-view-controller.js"></script>
     <script src="directives/directives.js"></script>
@@ -14,9 +15,18 @@
 </head>
 
 <body>
+<div style="width: 1500px; border: solid 5px; position:fixed;">
+<div style="width: 200px; height:700px; background-color: darkseagreen; font-family: 'Arial Black'">
+    <div >
+        <a href="#/employees" >employees</a>
+    </div>
+    <div>
+        <a href="#/actions" >actions</a>
+    </div>
+</div>
 
-<div ng-view>
-
+<div style="position:absolute; left:200px; top:30px; width: 1000px; margin: 50px" ng-view>
+</div>
 </div>
 </body>
 </html>

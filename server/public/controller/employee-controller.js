@@ -1,9 +1,5 @@
-//TODO : change controller name and remove app creation
-
-		var app = angular.module('trackerApp', []);
-app.controller('myCtrl', function($scope, $http) {
-
-
+var employeeControllerModule = angular.module('employeeController', []);
+employeeControllerModule.controller('EmployeeController', function($scope, $http) {
     function refresh() {
         $http.get("/rest/list").success(function (response) {
                 $scope.employees=response;
