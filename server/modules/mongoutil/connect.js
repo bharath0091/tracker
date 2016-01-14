@@ -23,6 +23,10 @@ return {
                         var stream = this.getCollection(collectionName).find({});
                         collectStreamData(stream, callback);
                     },
+  getDocuments : function (collectionName, searchObject, callback) {
+                        var stream = this.getCollection(collectionName).find(searchObject);
+                        collectStreamData(stream, callback);
+                    },
   getDocumentById : function (collectionName, id, callback) {
                     var stream = this.getCollection(collectionName).find({_id : ObjectID(id)}).stream();
                      collectStreamData(stream, callback);

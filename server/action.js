@@ -29,7 +29,7 @@ router.get('/rest/list', function(req, res) {
 router.get('/rest/view-details-by-id/:id', function(req, res) {
     var id = req.params.id;
     console.log("received get request for " + id);
-    var details = mongoUtil.getDocumentById('action', id, function(data){
+    mongoUtil.getDocumentById('action', id, function(data){
     res.end(JSON.stringify(data[0]));
     });
   });

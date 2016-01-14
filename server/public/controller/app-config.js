@@ -1,5 +1,5 @@
 
-var app = angular.module('trackerApp', ['ngRoute', 'employeeController', 'actionController', 'actionViewController', 'directives']);
+var app = angular.module('trackerApp', ['ngRoute', 'employeeController', 'actionController', 'actionViewController', 'employeeActionsController', 'directives']);
 
 app.config(['$routeProvider',
     function($routeProvider) {
@@ -19,6 +19,10 @@ app.config(['$routeProvider',
         when('/action/view/:viewActionId', {
             templateUrl: 'partials/action-view.html',
             controller: 'ActionViewController'
+        }).
+        when('/employee-actions/employee/:employeeId', {
+            templateUrl: 'partials/employee-actions-view.html',
+            controller: 'EmployeeActionsController'
         }).
         when('/action/leave', {
             //TODO

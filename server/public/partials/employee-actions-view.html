@@ -1,0 +1,17 @@
+<div xmlns="http://www.w3.org/1999/html" style="font-size: large">
+    <label>view employee actions</label><br><br>
+
+    <label>employee id : </label> <span> {{employeeId}}</span><br>
+
+    <label>actions : </label><br>
+    <div ng-repeat="action in employeeActions.actions">
+    <a href="#/employee-actions/action/{{employeeId}}/{{action.actionId}}">{{action.name}}</a>
+    </div>
+    <br>
+    <a href="#/actions">Back</a> &nbsp;&nbsp;
+    <button style="width: 60px; height: 20px" ng-click="addAction()"> Submit</button>
+<!--
+//http://jsfiddle.net/fess81/axq5vu41/
+    //http://ng-learn.org/2014/01/Dom-Manipulations/
+-->
+</div>

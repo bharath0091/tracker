@@ -18,46 +18,20 @@ process.on('uncaughtException', function (err) {
     console.log('Caught exception: ' + err);
 });
 
-
-router.get('/employee/:id', function(req, res) {
-    var employeeId = req.params.id;
-    console.log("received request for employee-actions for employee id" + employeeId);
-    var details = mongoUtil.getDocumentById('employees', id, function(data){
-        res.end(JSON.stringify(data[0]));
-    });
-});
-
-router.get('/rest/list', function(req, res) {
+router.get('/rest/employee-actions-by-employee-id/:employeeId', function(req, res) {
+    var employeeId = req.params.employeeId;
         console.log("received get request");
-        mongoUtil.getAllDocuments('action', function(data){
-          res.end(JSON.stringify(data));
-       });
-  });
-
-
-router.get('/rest/view-details/:id', function(req, res) {
-    var id = req.params.id;
-    console.log("received get request for " + id);
-    var details = mongoUtil.getDocumentById('action', id, function(data){
-    res.end(JSON.stringify(data[0]));
+    mongoUtil.getDocumentById('employees', employeeId, function(data){
+        var employee = data[0];
+        console.log("employee : " + JSON.stringify(employee))
+        mongoUtil.getDocuments('action', {assignedTo : employee.project}, function(data){
+            var actions = data;
+            employee.actions = actions;
+            console.log("employee with actions : " + JSON.stringify(employee))
+            res.end(JSON.stringify(employee));
+        });
     });
   });
-
-router.post('/rest', function(req, res) {
-    console.log("received post request : " + JSON.stringify(req.body));
-    mongoUtil.insertOneDocument('action', req.body);
-    res.end();
-});
-
-router.delete("/rest/:id", function(req, res) {
-    var id = req.params.id;
-    console.log("received DELETE request for " + id);
-    mongoUtil.deleteDocumentById('action', id, function (err, results) {
-        console.log(err);
-        console.log(results);
-    res.end();
-    })
-});
 
 
 module.exports = router;
