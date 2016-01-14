@@ -1,11 +1,12 @@
-var employeeActionsControllerModule = angular.module('employeeActionsController', ['ngRoute']);
-employeeActionsControllerModule.controller('EmployeeActionsController', function($scope, $routeParams, $http) {
+var employeeActionControllerModule = angular.module('employeeActionController', ['ngRoute']);
+employeeActionControllerModule.controller('EmployeeActionController', function($scope, $routeParams, $http) {
         function refresh() {
             var employeeId = $routeParams.employeeId;
-            $scope.employeeId = employeeId;
-            console.log("$routeParams.employeeId :" + $scope.employeeId);
-            $http.get("/employee-actions/rest/employee-actions-by-employee-id/" + employeeId).success(function (response) {
-                $scope.employeeActions = response;
+            var actionId = $routeParams.actionId;
+            console.log("$routeParams.employeeId :" + employeeId);
+            console.log("$routeParams.actionId :" + actionId);
+            $http.get("/employee-actions/rest/employee-action-by-their-ids/" + employeeId + '/' + actionId).success(function (response) {
+                $scope.employeeAction = response;
                     console.log("received success response for GET request " + JSON.stringify(response));
                 }
             );

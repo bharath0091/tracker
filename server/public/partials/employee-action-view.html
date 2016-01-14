@@ -1,13 +1,15 @@
 <div xmlns="http://www.w3.org/1999/html" style="font-size: large">
-    <label>view employee actions</label><br><br>
+    <label>view employee action</label><br><br>
 
-    <label>employee id : </label> <span> {{employeeId}}</span><br>
+
 
     <label>actions : </label><br>
-    <div ng-repeat="action in employeeActions.actions">
-    <a href="#/employee-actions/employee/{{employeeId}}/action/{{action._id}}">{{action.name}}</a>
+
+
+    <div ng-repeat="actionField in employeeAction.action.fields">
+        <label>{{actionField.name}}</label>&nbsp;:&nbsp;<input type="{{actionField.type}}" ng-model="{{actionField.name}}">
     </div>
-    <br>
+
     <a href="#/actions">Back</a> &nbsp;&nbsp;
     <button style="width: 60px; height: 20px" ng-click="addAction()"> Submit</button>
 <!--
