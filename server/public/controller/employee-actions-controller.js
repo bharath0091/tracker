@@ -3,7 +3,6 @@ employeeActionsControllerModule.controller('EmployeeActionsController', function
         function refresh() {
             var employeeId = $routeParams.employeeId;
             $scope.employeeId = employeeId;
-            console.log("$routeParams.employeeId :" + $scope.employeeId);
             $http.get("/employee-actions/rest/employee-actions-by-employee-id/" + employeeId).success(function (response) {
                 $scope.employeeActions = response;
                     console.log("received success response for GET request " + JSON.stringify(response));

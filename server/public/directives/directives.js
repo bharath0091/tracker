@@ -1,8 +1,9 @@
 var directivesModule = angular.module('directives', []);
-var counter = 1;
-directivesModule.directive('actionRow', function($compile){
 
-    return{
+directivesModule.directive('actionRow', function($compile){
+    var counter = 0;
+    return {
+
        // restrict: 'A',
         link: function($scope , element){
             element.bind("click", function(e){
@@ -10,6 +11,9 @@ directivesModule.directive('actionRow', function($compile){
                 var childNode = $compile('<input ng-model="action.fields[' +counter +'].name" type="text">  <select ng-model="action.fields[' + counter + '].type"> <option value="text">text</option><option value="date">date</option></select> <br>')($scope);
                 counter++;
                 element.parent().append(childNode);
+            });
+            element.on('$destroy', function() {
+                counter = 0;
             });
         }
     }
