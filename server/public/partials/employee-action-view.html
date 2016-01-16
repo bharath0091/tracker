@@ -7,11 +7,11 @@
 
 
     <div ng-repeat="actionField in employeeAction.action.fields">
-        <label>{{actionField.name}}</label>&nbsp;:&nbsp;<input type="{{actionField.type}}" ng-model="{{actionField.name}}">
+        <label>{{actionField.name}}</label>&nbsp;:&nbsp;<input type="{{actionField.type}}" ng-model="actionResult.fields[actionField.name]">
     </div>
 
     <a href="#/actions">Back</a> &nbsp;&nbsp;
-    <button style="width: 60px; height: 20px" ng-click="addAction()"> Submit</button>
+    <button style="width: 60px; height: 20px" ng-click="submitActionResult()"> Submit</button>
 <!--
 //http://jsfiddle.net/fess81/axq5vu41/
     //http://ng-learn.org/2014/01/Dom-Manipulations/

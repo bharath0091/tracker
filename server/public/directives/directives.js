@@ -1,12 +1,14 @@
 var directivesModule = angular.module('directives', []);
-
+var counter = 1;
 directivesModule.directive('actionRow', function($compile){
+
     return{
        // restrict: 'A',
         link: function($scope , element){
             element.bind("click", function(e){
                 initializeAction($scope);
-                var childNode = $compile('<input ng-model="action.fields[0].name" type="text">  <select ng-model="action.fields[0].type"> <option value="text">text</option><option value="date">date</option></select> <br>')($scope);
+                var childNode = $compile('<input ng-model="action.fields[' +counter +'].name" type="text">  <select ng-model="action.fields[' + counter + '].type"> <option value="text">text</option><option value="date">date</option></select> <br>')($scope);
+                counter++;
                 element.parent().append(childNode);
             });
         }
@@ -21,3 +23,4 @@ function initializeAction($scope){
     }
     $scope.action.fields = [];
 }
+

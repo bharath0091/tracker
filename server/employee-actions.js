@@ -19,14 +19,10 @@ process.on('uncaughtException', function (err) {
 });
 
 router.get('/rest/employee-actions-by-employee-id/:employeeId', function(req, res) {
-    var employeeId = req.params.employeeId;
-        console.log("received get request");
-    mongoUtil.getDocumentById('employees', employeeId, function(data){
+    mongoUtil.getDocuments('employees', {id : req.params.employeeId}, function(data){
         var employee = data[0];
-        console.log("employee : " + JSON.stringify(employee))
         mongoUtil.getDocuments('action', {assignedTo : employee.project}, function(data){
-            var actions = data;
-            employee.actions = actions;
+            employee.actions = data;
             console.log("employee with actions : " + JSON.stringify(employee))
             res.end(JSON.stringify(employee));
         });
@@ -34,19 +30,20 @@ router.get('/rest/employee-actions-by-employee-id/:employeeId', function(req, re
   });
 
 router.get('/rest/employee-action-by-their-ids/:employeeId/:actionId', function(req, res) {
-    var employeeId = req.params.employeeId;
-    var actionId = req.params.actionId;
-    console.log("received get request");
-    mongoUtil.getDocumentById('employees', employeeId, function(data){
+    mongoUtil.getDocuments('employees', {id : req.params.employeeId}, function(data){
         var employee = data[0];
-        console.log("employee : " + JSON.stringify(employee))
-        mongoUtil.getDocumentById('action', actionId, function(data){
-            var action = data[0];
-            employee.action = action;
+        mongoUtil.getDocumentById('action', req.params.actionId, function(data){
+            employee.action =  data[0];
             console.log("employee with action : " + JSON.stringify(employee))
             res.end(JSON.stringify(employee));
         });
     });
+});
+
+router.post('/rest/action-result', function(req, res) {
+    console.log("received post request :" + JSON.stringify(req.body));
+    mongoUtil.insertOneDocument('action-result', req.body);
+    res.end();
 });
 
 
