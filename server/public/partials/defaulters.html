@@ -1,12 +1,12 @@
 
 <div>
-    <label>Select action name</label>&nbsp;
+    <h3>Select action name</h3>&nbsp;
 <select ng-model="selectedActionId">
     <option ng-repeat="action in actions" value="{{action._id}}">{{action.name}}</option>
 </select>&nbsp;
     <button ng-click="showDefaulters()">Go</button><br><br>
     <div>
-        <label>Defaulters</label><br>
+        <h2>Defaulters</h2><br>
         <table border="1" style="width:100%">
             <thead>
             <tr>
