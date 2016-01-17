@@ -41,8 +41,8 @@ router.get('/rest/employee-action-by-their-ids/:employeeId/:actionId', function(
 });
 
 router.post('/rest/action-result', function(req, res) {
-    console.log("received post request :" + JSON.stringify(req.body));
-    mongoUtil.insertOneDocument('action-result', req.body);
+    console.log("received post request : " + JSON.stringify(req.body));
+    mongoUtil.insertOneDocument('data', req.body);
     res.end();
 });
 

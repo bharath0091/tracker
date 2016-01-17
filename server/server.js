@@ -6,11 +6,9 @@ app.use(bodyParser.json());
 //must read
 //http://blog.mongolab.com/2013/11/deep-dive-into-connection-pooling/
 
-var action = require('./action');
-app.use('/action', action);
-
-
+app.use('/action', require('./action'));
 app.use('/employee-actions', require('./employee-actions'));
+app.use('/defaulters', require('./defaulters'));
 
 //mongoUtilModule
 var mongoUtilModule = require('./modules/mongoutil');

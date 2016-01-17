@@ -1,8 +1,30 @@
 
 <div>
-    <label>select action name</label>&nbsp;
-<select ng-model="selectedAction">
-    <option ng-repeat="action in actions" value="{{action.name}}">{{action.name}}</option>
-</select>
+    <label>Select action name</label>&nbsp;
+<select ng-model="selectedActionId">
+    <option ng-repeat="action in actions" value="{{action._id}}">{{action.name}}</option>
+</select>&nbsp;
+    <button ng-click="showDefaulters()">Go</button><br><br>
+    <div>
+        <label>Defaulters</label><br>
+        <table border="1" style="width:100%">
+            <thead>
+            <tr>
+                <th>employee-id</th>
+                <th>name</th>
+                <th>email</th>
+                <th>project</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="employee in defaulters">
+                <td>{{employee.id}}</td>
+                <td>{{employee.name}}</td>
+                <td>{{employee.email}}</td>
+                <td>{{employee.project}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
 </div>

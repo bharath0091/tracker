@@ -11,13 +11,13 @@ defaultersControllerModule.controller('DefaultersController', function ($scope, 
 
     onLoad();
 
-    $scope.addAction = function () {
-        console.log($scope.action);
-        //console.log($scope.test)
-        $http.post("/action/rest", $scope.action).success(function (response) {
-            console.log("received success response for POST request");
-            $scope.isAddActionSuccessful = true;
-        });
+    $scope.showDefaulters = function () {
+        console.log("selected action _id:" + $scope.selectedActionId);
+        $http.get("/defaulters/rest/action-id/" + $scope.selectedActionId).success(function (response) {
+                $scope.defaulters = response;
+                console.log("received success response for GET request : " + JSON.stringify(response));
+            }
+        );
     }
 
     $scope.deleteAction = function (id) {

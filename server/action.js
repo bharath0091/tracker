@@ -5,7 +5,6 @@ var bodyParser = require('body-parser');
 router.use(bodyParser.json());
 router.use(express.static(__dirname + '/public'));
 
-
 //mongoUtilModule
 var mongoUtilModule = require('./modules/mongoutil');
 var mongoUtil = mongoUtilModule();
@@ -24,7 +23,6 @@ router.get('/rest/list', function(req, res) {
           res.end(JSON.stringify(data));
        });
   });
-
 
 router.get('/rest/view-details-by-id/:id', function(req, res) {
     var id = req.params.id;
@@ -49,7 +47,6 @@ router.delete("/rest/:id", function(req, res) {
     res.end();
     })
 });
-
 
 module.exports = router;
 
