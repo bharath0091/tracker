@@ -27,22 +27,14 @@ router.get('/rest/action-id/:actionId', function(req, res) {
     });
   });
 
-router.get('/rest/employee-action-by-their-ids/:employeeId/:actionId', function(req, res) {
-    mongoUtil.getDocuments('employees', {id : req.params.employeeId}, function(data){
-        var employee = data[0];
-        mongoUtil.getDocumentById('action', req.params.actionId, function(data){
-            employee.action =  data[0];
-            console.log("employee with action : " + JSON.stringify(employee))
-            res.end(JSON.stringify(employee));
-        });
+router.get('/report/rest/action-id/:actionId', function(req, res) {
+    getEmployeesAndActionData(req.params.actionId, function(employees, actionData){
+        console.log("actionData : " + JSON.stringify(actionData))
+        res.end(JSON.stringify(actionData));
     });
 });
 
-router.post('/rest/action-result', function(req, res) {
-    console.log("received post request :" + JSON.stringify(req.body));
-    mongoUtil.insertOneDocument('action-result', req.body);
-    res.end();
-});
+
 
 function getEmployeesAndActionData(actionId, callback) {
     console.log("actionId : " + actionId);

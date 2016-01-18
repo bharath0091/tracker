@@ -1,5 +1,5 @@
 
-var app = angular.module('trackerApp', ['ngRoute', 'employeeController', 'actionController', 'actionViewController', 'employeeActionsController', 'employeeActionController', 'defaultersController', 'directives']);
+var app = angular.module('trackerApp', ['ngRoute', 'employeeController', 'actionController', 'actionViewController', 'employeeActionsController', 'employeeActionController', 'defaultersController', 'giveDataController', 'directives']);
 
 app.config(['$routeProvider',
     function($routeProvider) {
@@ -36,39 +36,17 @@ app.config(['$routeProvider',
             templateUrl: 'partials/defaulters.html',
             controller: 'DefaultersController'
         }).
+        when('/report', {
+            templateUrl: 'partials/report.html',
+            controller: 'DefaultersController'
+        }).
+        when('/give-data/:actionId', {
+            templateUrl: 'partials/give-data.html',
+            controller: 'GiveDataController'
+        }).
         when('/action/leave', {
             //TODO
             templateUrl: 'partials/',
             controller: 'ActionController'
         });
     }]);
-
-//app.controller('ActionListController', function ($scope, $http) {
-//    function refresh() {
-//        $http.get("/action/rest/list").success(function (response) {
-//                $scope.actions = response;
-//                console.log("received success response for GET request")
-//            }
-//        );
-//    }
-//
-//    refresh();
-//
-//    $scope.addAction = function () {
-//        console.log($scope.action);
-//        //console.log($scope.test)
-//        $http.post("/action/rest", $scope.action).success(function (response) {
-//            console.log("received success response for POST request");
-//            refresh();
-//        });
-//    }
-//
-//    $scope.deleteAction = function (id) {
-//        console.log("id to delete" + id);
-//        //console.log($scope.test)
-//        $http.delete("/action/rest/" + id).success(function (response) {
-//            console.log("received success response for DELETE request")
-//            refresh();
-//        });
-//    }
-//});
