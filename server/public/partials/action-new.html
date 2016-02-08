@@ -1,34 +1,35 @@
 <div xmlns="http://www.w3.org/1999/html" style="font-size: large">
-    <label>create new action</label><br>
+    <h2>Create new action</h2>
 <span ng-if="isAddActionSuccessful" ng-init="isAddActionSuccessful=false" style="color: #10ff5c">
   Action added successfully
 </span>
     <br>
 
-    <label>action name</label>
+    <label>Action name :</label>
     <input style="padding-left: 10px" type="text" name="action name" ng-model="action.name" >
-<br>
-    <label>active ?</label>
+<br><br>
+    <label>Active ? :</label>
     <input style="padding-left: 10px" type="checkbox" name="active ?" ng-model="action.active">
-    <br>
-    <label>last date</label>
+    <br><br>
+    <label>Last date :</label>
     <input style="padding-left: 10px" type="date" name="last date" ng-model="action.lastDate">
-    <br>
-    <label>assigned to</label>
+    <br><br>
+    <label>Assigned to :</label>
     <!--TODO make the list dynamic -->
     <select ng-model="action.assignedTo">
         <option value="service">service</option>
         <option value="kc">kc</option>
         <option value="sic">sic</option>
     </select>
-<br>
-<br>
-    <div action-row ng-init="counter = 0">Add new row</div>
+<br><br>
+    <div>
+    <a style="color: blueviolet" action-row ng-init="counter = 0">Click here to add new row</a>
+    </div>
     <br>
     <br>
 
     <a href="#/actions">Back</a> &nbsp;&nbsp;
-    <button style="width: 60px; height: 20px" ng-click="addAction()"> Submit</button>
+    <button ng-if="!isAddActionSuccessful" style="width: 60px; height: 20px" ng-click="addAction()"> Submit</button>
 <!--
 //http://jsfiddle.net/fess81/axq5vu41/
     //http://ng-learn.org/2014/01/Dom-Manipulations/
