@@ -1,3 +1,17 @@
+Tools :
+
+mongochef : lot many options like editing data, free version is there
+http://3t.io/mongochef/#tab-id-8
+
+mongo compass developed by mongodb, not many features,
+MongoDB Compass analyzes your documents and displays rich structures within your collections in a simple and intuitive GUI. It allows you to quickly visualize and explore your schema to understand the frequency, types and ranges of fields in your data set
+like : the number of strings and no of number in a column
+
+
+
+
+
+
 
 http://stackoverflow.com/questions/24621940/how-to-properly-reuse-connection-to-mongodb-across-nodejs-application-and-module
 

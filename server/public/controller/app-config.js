@@ -8,6 +8,11 @@ app.config(['$routeProvider',
             templateUrl: 'partials/employee-list.html',
             controller: 'EmployeeController'
         }).
+        // TODO why same controller for both list and new, refresh happens for employee-new also; same for action
+        when('/employee/new', {
+            templateUrl: 'partials/employee-new.html',
+            controller: 'EmployeeController'
+        }).
         when('/actions', {
             templateUrl: 'partials/action-list.html',
             controller: 'ActionController'

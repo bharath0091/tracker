@@ -1,4 +1,5 @@
 <div>
+    <a style="position:absolute; right: 10px; font-size: 20px; font-weight:bold" href="#/employee/new">Add new action</a><br><br>
     <h2>Employee list</h2><br>
     <table border="1" style="width:100%">
         <thead>
@@ -11,15 +12,6 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td><input ng-model="employee.id"/></td>
-            <td><input ng-model="employee.name"/></td>
-            <td><input ng-model="employee.email"></td>
-            <td><input ng-model="employee.project"></td>
-            <td>
-                <button ng-click="addEmployee()">add employee</button>
-            </td>
-        </tr>
         <tr ng-repeat="employee in employees">
             <td>{{employee.id}}</td>
             <td>{{employee.name}}</td>

@@ -15,6 +15,7 @@ employeeControllerModule.controller('EmployeeController', function($scope, $http
         //console.log($scope.test)
     $http.post("/rest", $scope.employee).success(function (response){
         console.log("received success response for POST request");
+        $scope.isAddEmployeeSuccessful = true;
      refresh();
     });
     }

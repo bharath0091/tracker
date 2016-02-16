@@ -20,3 +20,10 @@ add dependencies in []
 
 TODO : Why names must fixed : $scope, $routeParams, $http: 'must read' in mozilla favourite
 actionControllerModule.controller('ActionController', function ($scope, $routeParams, $http) {
+
+
+File upload :
+
+http://nervgh.github.io/pages/angular-file-upload/examples/simple/
+https://github.com/nervgh/angular-file-upload
+https://www.npmjs.com/package/angular-file-upload
