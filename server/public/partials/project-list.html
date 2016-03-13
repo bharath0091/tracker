@@ -1,0 +1,22 @@
+<div>
+<div ng-init="collection='project'"/>
+    <a style="position:absolute; right: 10px; font-size: 20px; font-weight:bold" href="#/project/new">Add new project</a><br><br>
+    <h2>Project list</h2><br>
+    <table border="1" style="width:100%">
+        <thead>
+        <tr>
+            <th>Project Name</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="project in documents">
+            <td>{{project.name}}</td>
+            <td>{{project.description}}</td>
+            <td>
+                <button ng-click="deleteProject(project._id)">remove</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

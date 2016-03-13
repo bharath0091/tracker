@@ -24,6 +24,6 @@ actionControllerModule.controller('ActionController', function ($scope, $routePa
 
 File upload :
 
-http://nervgh.github.io/pages/angular-file-upload/examples/simple/
+example : https://jsfiddle.net/JeJenny/ZG9re/
 https://github.com/nervgh/angular-file-upload
 https://www.npmjs.com/package/angular-file-upload

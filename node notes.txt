@@ -17,3 +17,12 @@ If there is no package.json file present in the directory, then Node.js will att
 
     ./some-library/index.js
     ./some-library/index.node
+
+
+modules :
+good one :
+https://darrenderidder.github.io/talks/ModulePatterns
+
+There are different types of exports : global; anonymous function, object, prototype; named function, object, prototype;
+require to include file
+Modules use exports to make things available

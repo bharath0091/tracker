@@ -1,5 +1,5 @@
 
-var app = angular.module('trackerApp', ['ngRoute', 'employeeController', 'actionController', 'actionViewController', 'employeeActionsController', 'employeeActionController', 'defaultersController', 'giveDataController', 'directives']);
+var app = angular.module('trackerApp', ['ngRoute', 'employeeController', 'actionController', 'actionViewController', 'employeeActionsController', 'employeeActionController', 'defaultersController', 'giveDataController', 'crudController', 'directives']);
 
 app.config(['$routeProvider',
     function($routeProvider) {
@@ -48,6 +48,14 @@ app.config(['$routeProvider',
         when('/give-data/:actionId', {
             templateUrl: 'partials/give-data.html',
             controller: 'GiveDataController'
+        }).
+        when('/projects', {
+            templateUrl: 'partials/project-list.html',
+            controller: 'CRUDController'
+        }).
+        when('/project/new', {
+            templateUrl: 'partials/project-new.html',
+            controller: 'CRUDController'
         }).
         when('/action/leave', {
             //TODO

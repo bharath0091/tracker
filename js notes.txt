@@ -30,3 +30,84 @@ app.service('hexafy', function() {
 app.controller('myCtrl', function($scope, hexafy) {
     $scope.hex = hexafy.myFunc(255);
 });
+
+
+what does this. means inside function. In the above example we can the this. method as followos,hexafy.myFunc
+
+checl FormData :
+
+var fd = new FormData();
+    fd.append('file', file);
+
+-> why methods parameters order is imp, ... $http..
+
+
+
+----------------------------
+Object is a name value pair. 
+1. can be created as literal, {name:bharath}
+2. using keyword new, var person = new Object();person.firstName = "John";person.lastName = "Doe";person.age = 50;person.eyeColor = "blue";
+3. the above can create only one object, Sometimes we like to have an "object type" that can be used to create many objects of one type
+function person(first, last, age, eye) {
+    this.firstName = first;
+    this.lastName = last;
+    this.age = age;
+    this.eyeColor = eye;
+}
+var mfather = new person("John", "Doe", 50, "blue");
+var mother = new person("Sally", "Rally", 48, "green");
+
+
+
+
+
+In JavaScript, the thing called this, is the object that "owns" the current code.
+
+1. The value of this, when used in a function, is the object that "owns" the function.
+2. The value of this, when used in an object, is the object itself.
+3. The this keyword in an object constructor does not have a value. It is only a substitute for the new object.
+The value of this will become the new object when the constructor is used to create an object.
+Actually it is not true, as per 1st point it will become window when the object constructor is not in an object
+
+
+
+-> 
+When a function is called without an owner object, the value of this becomes the global object.
+
+In a web browser the global object is the browser window.
+
+-> var myObject = {
+    firstName:"John",
+    lastName: "Doe",
+    fullName: function () {
+        return this.firstName + " " + this.lastName;///////////this means myObject(myObject the owner of the current function)
+    }
+}
+myObject.fullName(); 
+
+
+Prototype :
+All JavaScript objects inherit the properties and methods from their prototype.
+
+Objects created using an object literal, or with new Object(), inherit from a prototype called Object.prototype.
+
+Objects created with new Date() inherit the Date.prototype. The Object.prototype is on the top of the prototype chain.
+
+1. The standard way to create an object prototype is to use an object constructor function:
+
+function person(first, last, age, eyecolor) {
+    this.firstName = first;
+    this.lastName = last;
+}
+var myFather = new person("John", "Doe", 50, "blue");
+var myMother = new person("Sally", "Rally", 48, "green");
+
+Imp : The constructor function is the prototype for your person objects.
+
+
+2. Adding a Property/Method to an Object
+myFather.nationality = "English";
+The property will be added to myFather. Not to myMother. Not to any other person objects.
+
+3. Adding Properties/methods to a Prototype
+person.prototype.nationality = "English";

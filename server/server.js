@@ -6,13 +6,15 @@ app.use(bodyParser.json());
 //must read
 //http://blog.mongolab.com/2013/11/deep-dive-into-connection-pooling/
 
+app.use('/crud', require('./crud'));
+app.use('/employee', require('./employee'));
 app.use('/action', require('./action'));
 app.use('/employee-actions', require('./employee-actions'));
 app.use('/defaulters', require('./defaulters'));
 
 //mongoUtilModule
 var mongoUtilModule = require('./modules/mongoutil');
-var mongoUtil = mongoUtilModule();
+var mongoUtil = mongoUtilModule;
 mongoUtil.connectToServer(function(err) {
 console.dir(err);
 }

@@ -1,5 +1,5 @@
 <div>
-    <a style="position:absolute; right: 10px; font-size: 20px; font-weight:bold" href="#/employee/new">Add new action</a><br><br>
+    <a style="position:absolute; right: 10px; font-size: 20px; font-weight:bold" href="#/employee/new">Add new employee</a><br><br>
     <h2>Employee list</h2><br>
     <table border="1" style="width:100%">
         <thead>
@@ -26,4 +26,10 @@
         </tr>
         </tbody>
     </table>
+
+    <div style="position:absolute; left:200px; top:30px; width: 1000px; margin: 50px" ng-controller = "uploadController">
+        <input type = "file" file-model = "myFile"/>
+        <button ng-click = "uploadFile()">upload me</button>
+    </div>
+
 </div>

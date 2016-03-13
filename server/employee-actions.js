@@ -8,7 +8,7 @@ router.use(express.static(__dirname + '/public'));
 
 //mongoUtilModule
 var mongoUtilModule = require('./modules/mongoutil');
-var mongoUtil = mongoUtilModule();
+var mongoUtil = mongoUtilModule;
 mongoUtil.connectToServer(function(err) {
 console.dir(err);
 }

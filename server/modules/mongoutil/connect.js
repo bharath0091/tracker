@@ -4,8 +4,7 @@ var MongoClient = db.MongoClient;
 
 var _db;
 
-module.exports = function() {
-return {
+module.exports = {
 
   connectToServer : function( callback ) {
                         MongoClient.connect( "mongodb://localhost:27017/employees", function( err, db ) {
@@ -39,7 +38,7 @@ return {
                         callback (err, results)
                         });
                      }
-}
+
 };
 
 function collectStreamData(stream, callback){
