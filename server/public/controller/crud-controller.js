@@ -24,7 +24,7 @@ crudControllerModule.controller('CRUDController', function($scope, $http) {
         var errorCallback = function (response) {
             console.log("received error response for POST request, response :" + JSON.stringify(response));
             $scope.isResponseReceivedFromServer = true;
-            if(response.status == 409) {
+            if(response.status == 400) {
                 $scope.status = response.data;
             } else {
                 //

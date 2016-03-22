@@ -86,10 +86,14 @@ In a web browser the global object is the browser window.
 myObject.fullName(); 
 
 
+note : this is object leter way of creating objects, we can also create new objects as follows, var secondObject = new myObject(); ::: to be tested once
+
+
 Prototype :
 All JavaScript objects inherit the properties and methods from their prototype.
 
 Objects created using an object literal, or with new Object(), inherit from a prototype called Object.prototype.
+
 
 Objects created with new Date() inherit the Date.prototype. The Object.prototype is on the top of the prototype chain.
 
@@ -111,3 +115,36 @@ The property will be added to myFather. Not to myMother. Not to any other person
 
 3. Adding Properties/methods to a Prototype
 person.prototype.nationality = "English";
+
+
+--------
+var a;
+if(a) will be true if a is undefined
+ or null or empty
+
+
+if(a), fail
+
+var a;
+if(a) pass
+
+var a ={}
+if(a) pass
+
+var a = ''
+if(a) pass
+
+
+
+        var a = " ";
+        alert(a);
+        if (a && a.trim()) {
+            alert("inside if")
+        } else {
+            alert("inside else")
+        }
+
+
+var newProject =null; if(typeof newProject === 'undefined' || !newProject || !newProject.name.trim())  {
+        alert('hi');
+    }

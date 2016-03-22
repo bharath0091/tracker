@@ -13,6 +13,8 @@ console.dir(err);
 }
 );
 
+var ValidatorFactory = require('./modules/validations').Factory;
+
 process.on('uncaughtException', function (err) {
     console.log('Caught exception: ' + err);
 });
@@ -35,22 +37,20 @@ router.get('/rest/view-details-by-id/:id', function(req, res) {
 
 router.post('/rest/:collectionName', function(req, res) {
     console.log("received post request : " + JSON.stringify(req.body) + " collectionName :" +  req.params.collectionName);
-    validateProject(req.body, function (status) {
-        if (status.success) {
-            mongoUtil.insertOneDocument(req.params.collectionName, req.body);
-            res.json(status);
-        } else {
-    res.status(409).json(status);
-        }
-    });
+    var status = ValidatorFactory.produce('project').validate(req.body);
+    if (status.success) {
+        mongoUtil.insertOneDocument(req.params.collectionName, req.body);
+        res.json(status);
+    } else {
+        res.status(400).json(status);
+    }
 });
 
-function status (success, message) {
-    this.success = success;
-    this.message = message;
-}
-
 function validateProject(newProject, callback) {
+    if(!newProject || !newProject.name || !newProject.name.trim())  {
+        callback(new status(false, 'project name cant be empty'));
+    }
+
     mongoUtil.getAllDocuments('project', function(data){
         var isDuplicate = false;
         for	(var projectIndex = 0; projectIndex < data.length; projectIndex++) {

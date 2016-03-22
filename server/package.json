@@ -19,6 +19,7 @@
     "express": "^4.13.3",
     "mangojs": "0.0.2",
     "mongodb": "^2.0.48",
-    "multer": "^1.1.0"
+    "multer": "^1.1.0",
+    "nodeunit": "^0.9.1"
   }
 }
