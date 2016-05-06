@@ -86,8 +86,6 @@ In a web browser the global object is the browser window.
 myObject.fullName(); 
 
 
-note : this is object leter way of creating objects, we can also create new objects as follows, var secondObject = new myObject(); ::: to be tested once
-
 
 Prototype :
 All JavaScript objects inherit the properties and methods from their prototype.
@@ -119,22 +117,7 @@ person.prototype.nationality = "English";
 
 --------
 var a;
-if(a) will be true if a is undefined
- or null or empty
-
-
-if(a), fail
-
-var a;
-if(a) pass
-
-var a ={}
-if(a) pass
-
-var a = ''
-if(a) pass
-
-
+if(a) will be true if a is not any of the folowing undefined, null or empty
 
         var a = " ";
         alert(a);
@@ -143,8 +126,3 @@ if(a) pass
         } else {
             alert("inside else")
         }
-
-
-var newProject =null; if(typeof newProject === 'undefined' || !newProject || !newProject.name.trim())  {
-        alert('hi');
-    }

@@ -3,10 +3,10 @@
  */
 
 module.exports.Factory = {
-    produce : function (documentToBeValidated) {
-        if (documentToBeValidated == 'project') {
-            return require('./project.js');
-        } else {
+    produce : function (moduleName) {
+        try {
+            return require('./' + moduleName +'.js');
+        } catch(err) {
             return null;
         }
     }

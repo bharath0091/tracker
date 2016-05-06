@@ -57,6 +57,10 @@ app.config(['$routeProvider',
             templateUrl: 'partials/project-new.html',
             controller: 'CRUDController'
         }).
+        when('/project/update/:id', {
+            templateUrl: 'partials/project-update.html',
+            controller: 'CRUDController'
+        }).
         when('/action/leave', {
             //TODO
             templateUrl: 'partials/',

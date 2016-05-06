@@ -6,14 +6,13 @@ router.use(bodyParser.json());
 router.use(express.static(__dirname + '/public'));
 
 //mongoUtilModule
-var mongoUtilModule = require('./modules/mongoutil');
-var mongoUtil = mongoUtilModule;
+var mongoUtil = require('./modules/mongoutil');
 mongoUtil.connectToServer(function(err) {
 console.dir(err);
 }
 );
 
-var ValidatorFactory = require('./modules/validations').Factory;
+var Factory = require('./modules/validations').Factory;
 
 process.on('uncaughtException', function (err) {
     console.log('Caught exception: ' + err);
@@ -37,13 +36,27 @@ router.get('/rest/view-details-by-id/:id', function(req, res) {
 
 router.post('/rest/:collectionName', function(req, res) {
     console.log("received post request : " + JSON.stringify(req.body) + " collectionName :" +  req.params.collectionName);
-    var status = ValidatorFactory.produce('project').validate(req.body);
-    if (status.success) {
-        mongoUtil.insertOneDocument(req.params.collectionName, req.body);
-        res.json(status);
-    } else {
-        res.status(400).json(status);
-    }
+    Factory.produce('new_project_validator').validate(req.body, function(status) {
+        if (status.success) {
+            mongoUtil.insertOneDocument(req.params.collectionName, req.body);
+            res.json(status);
+        } else {
+            res.status(400).json(status);
+        }
+    });
+});
+
+router.put('/rest/:collectionName', function(req, res) {
+    console.log("received put request : " + JSON.stringify(req.body) + " collectionName :" +  req.params.collectionName);
+    Factory.produce('update_project_validator').validate(req.body, function(status) {
+        console.log("status.success " + status.success);
+        if (status.success) {
+            mongoUtil.updateDocument(req.params.collectionName, req.body);
+            res.json(status);
+        } else {
+            res.status(400).json(status);
+        }
+    });
 });
 
 function validateProject(newProject, callback) {
@@ -51,21 +64,7 @@ function validateProject(newProject, callback) {
         callback(new status(false, 'project name cant be empty'));
     }
 
-    mongoUtil.getAllDocuments('project', function(data){
-        var isDuplicate = false;
-        for	(var projectIndex = 0; projectIndex < data.length; projectIndex++) {
-            var project = data[projectIndex];
-            if(newProject.name == project.name){
-                isDuplicate = true;
-                break;
-            }
-        }
-        if (isDuplicate) {
-            callback(new status(false, 'duplicate project'));
-        } else {
-            callback(new status(true, 'ok'));
-        }
-    });
+
 }
 
 router.delete("/rest/:collection/:id", function(req, res) {

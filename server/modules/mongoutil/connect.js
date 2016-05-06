@@ -33,7 +33,11 @@ module.exports = {
   insertOneDocument : function (collectionName, document) {
                         return this.getCollection(collectionName).insertOne(document);
                      },
-  deleteDocumentById : function (collectionName, id, callback) {
+  updateDocument : function (collectionName, document) {
+      document._id = ObjectID(document._id);
+      return this.getCollection(collectionName).replaceOne({_id : document._id}, document);
+  },
+    deleteDocumentById : function (collectionName, id, callback) {
                         this.getCollection(collectionName).deleteOne({_id : ObjectID(id)}, function(err, results) {
                         callback (err, results)
                         });
