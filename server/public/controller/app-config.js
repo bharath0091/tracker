@@ -49,15 +49,15 @@ app.config(['$routeProvider',
             templateUrl: 'partials/give-data.html',
             controller: 'GiveDataController'
         }).
-        when('/projects', {
+        when('/projects/collection_name/:collectionName', {
             templateUrl: 'partials/project-list.html',
             controller: 'CRUDController'
         }).
-        when('/project/new', {
+        when('/project/new/collection_name/:collectionName', {
             templateUrl: 'partials/project-new.html',
             controller: 'CRUDController'
         }).
-        when('/project/update/:id', {
+        when('/project/update/:id/collection_name/:collectionName', {
             templateUrl: 'partials/project-update.html',
             controller: 'CRUDController'
         }).

@@ -9,12 +9,12 @@ crudControllerModule.factory('dataCache', function($cacheFactory) {
 crudControllerModule.controller('CRUDController', function($scope, $http, $routeParams, dataCache) {
 
     var updateDucumentId = $routeParams.id;
+    var collectionName = $routeParams.collectionName;
+
     function refresh(forceLoad) {
-        //TODO : project shouldnt be hardcoded, it should be made generic
-        var cacheKey = 'project' + 'list';
+        var cacheKey = collectionName + 'list';
         if(forceLoad || dataCache.get(cacheKey) == undefined) {
-            //TODO : project shouldnt be hardcoded, it should be made generic
-            $http.get("/crud/rest/list/" + 'project').success(function (response) {
+            $http.get("/crud/rest/list/" + collectionName).success(function (response) {
                     $scope.documents=response;
                     dataCache.put(cacheKey, response);
                     console.log("received success response for GET request")
@@ -32,8 +32,7 @@ crudControllerModule.controller('CRUDController', function($scope, $http, $route
     }
 
     function loadDocument() {
-        //TODO : project shouldnt be hardcoded, it should be made generic
-        var cacheKey = 'project' + 'list';
+        var cacheKey = collectionName + 'list';
         var documents = dataCache.get(cacheKey);
         for (var index = 0; index < documents.length; index++) {
             var document = documents[index];
@@ -95,10 +94,8 @@ crudControllerModule.controller('CRUDController', function($scope, $http, $route
 
     }
 
-    $scope.deleteProject = function(id){
-        console.log("id to delete" + id);
-        console.log("$scope.collection " + $scope.collection)
-        $http.delete("/crud/rest/" + $scope.collection + "/" +id).success(function (response){
+    $scope.deleteProject = function(collectionName, id){
+        $http.delete("/crud/rest/" + collectionName + "/" +id).success(function (response){
             console.log("received success response for DELETE request")
         refresh(true);
         });
