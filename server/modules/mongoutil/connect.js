@@ -30,6 +30,12 @@ module.exports = {
                     var stream = this.getCollection(collectionName).find({_id : ObjectID(id)}).stream();
                      collectStreamData(stream, callback);
                     },
+  getDocumentByFieldName : function (collectionName, queryFieldName, queryFieldValue, callback) {
+//TODO use queryFieldName
+      console.log("queryFieldValue" + queryFieldValue);
+        var stream = this.getCollection(collectionName).find({'id' : queryFieldValue}).stream();
+        collectStreamData(stream, callback);
+    },
   insertOneDocument : function (collectionName, document) {
                         return this.getCollection(collectionName).insertOne(document);
                      },

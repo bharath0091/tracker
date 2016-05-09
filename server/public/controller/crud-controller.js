@@ -6,16 +6,15 @@ crudControllerModule.factory('dataCache', function($cacheFactory) {
     });
 })
 
-crudControllerModule.controller('CRUDController', function($scope, $http, $routeParams, dataCache) {
+crudControllerModule.controller('CRUDController', function($scope, $http, $routeParams, dataCache, collections) {
 
-    var updateDucumentId = $routeParams.id;
-    var collectionName = $routeParams.collectionName;
+    var updateDocumentId = $routeParams.id;
 
-    function refresh(forceLoad) {
+    function refresh(forceLoad, collectionName) {
         var cacheKey = collectionName + 'list';
         if(forceLoad || dataCache.get(cacheKey) == undefined) {
             $http.get("/crud/rest/list/" + collectionName).success(function (response) {
-                    $scope.documents=response;
+                    $scope[collectionName + 'Documents']=response;
                     dataCache.put(cacheKey, response);
                     console.log("received success response for GET request")
                 }
@@ -25,18 +24,21 @@ crudControllerModule.controller('CRUDController', function($scope, $http, $route
         }
     }
 
-    if (updateDucumentId == undefined) {
-        refresh(true);
+    if (updateDocumentId == undefined) {
+        var collectionsArray = collections.data;
+        for (var i = 0; i < collectionsArray.length; i ++) {
+            refresh(true, collectionsArray[i]);
+        }
     } else {
         loadDocument();
     }
 
     function loadDocument() {
-        var cacheKey = collectionName + 'list';
+        var cacheKey = collections.data[0] + 'list';
         var documents = dataCache.get(cacheKey);
         for (var index = 0; index < documents.length; index++) {
             var document = documents[index];
-            if (document._id == updateDucumentId) {
+            if (document._id == updateDocumentId) {
                 $scope.document = document;
                 break;
             }
@@ -94,7 +96,7 @@ crudControllerModule.controller('CRUDController', function($scope, $http, $route
 
     }
 
-    $scope.deleteProject = function(collectionName, id){
+    $scope.deleteDocument = function(collectionName, id){
         $http.delete("/crud/rest/" + collectionName + "/" +id).success(function (response){
             console.log("received success response for DELETE request")
         refresh(true);

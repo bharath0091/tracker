@@ -1,5 +1,5 @@
 var employeeControllerModule = angular.module('employeeController', []);
-employeeControllerModule.controller('EmployeeController', function($scope, $http) {
+employeeControllerModule.controller('CRUDController', function($scope, $http) {
     function refresh() {
         $http.get("/rest/list").success(function (response) {
                 $scope.employees=response;

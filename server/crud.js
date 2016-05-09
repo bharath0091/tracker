@@ -21,7 +21,7 @@ process.on('uncaughtException', function (err) {
 router.get('/rest/list/:collectionName', function(req, res) {
         console.log("received get request :" + req.params.collectionName);
         mongoUtil.getAllDocuments(req.params.collectionName, function(data){
-            console.log("response " + data);
+            console.log("response " + JSON.stringify(data));
           res.end(JSON.stringify(data));
        });
   });
@@ -35,10 +35,11 @@ router.get('/rest/view-details-by-id/:id', function(req, res) {
   });
 
 router.post('/rest/:collectionName', function(req, res) {
-    console.log("received post request : " + JSON.stringify(req.body) + " collectionName :" +  req.params.collectionName);
-    Factory.produce('new_project_validator').validate(req.body, function(status) {
+    var collectionName = req.params.collectionName;
+    console.log("received post request : " + JSON.stringify(req.body) + " collectionName :" +  collectionName);
+    Factory.produce('new_' + collectionName + '_validator').validate(req.body, function(status) {
         if (status.success) {
-            mongoUtil.insertOneDocument(req.params.collectionName, req.body);
+            mongoUtil.insertOneDocument(collectionName, req.body);
             res.json(status);
         } else {
             res.status(400).json(status);

@@ -12,16 +12,19 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="employee in employees">
+        <tr ng-repeat="employee in employeeDocuments">
             <td>{{employee.id}}</td>
             <td>{{employee.name}}</td>
             <td>{{employee.email}}</td>
             <td>{{employee.project}}</td>
             <td>
-                <a href="#/employee-actions/employee/{{employee.id}}">view actions</a>
+                <a href="#/employee-actions/employee/{{employee.id}}">View actions</a>
             </td>
             <td>
-                <button ng-click="deleteEmployee(employee._id)">remove</button>
+                <a href="#/employee-actions/employee/{{employee.id}}">Update</a>
+            </td>
+            <td>
+                <button ng-click="deleteDocument('project', project._id)">Remove</button>
             </td>
         </tr>
         </tbody>

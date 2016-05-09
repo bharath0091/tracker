@@ -1,19 +1,30 @@
 
 var app = angular.module('trackerApp', ['ngRoute', 'employeeController', 'actionController', 'actionViewController', 'employeeActionsController', 'employeeActionController', 'defaultersController', 'giveDataController', 'crudController', 'directives']);
 
+function resolveDetails(dataArray) {
+return {
+    "collections": function() {
+        return {
+            data :  dataArray};
+    }
+};
+}
+
+
 app.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
         when('/employees', {
             templateUrl: 'partials/employee-list.html',
-            controller: 'EmployeeController'
+            controller: 'CRUDController',
+            resolve: resolveDetails(['employee', 'project'])
         }).
         // TODO why same controller for both list and new, refresh happens for employee-new also; same for action
         when('/employee/new', {
             templateUrl: 'partials/employee-new.html',
-            controller: 'EmployeeController'
-        }).
-        when('/actions', {
+            controller: 'CRUDController',
+            resolve: resolveDetails(['employee', 'project'])})
+        .when('/actions', {
             templateUrl: 'partials/action-list.html',
             controller: 'ActionController'
         }).
@@ -49,19 +60,20 @@ app.config(['$routeProvider',
             templateUrl: 'partials/give-data.html',
             controller: 'GiveDataController'
         }).
-        when('/projects/collection_name/:collectionName', {
+        when('/projects', {
             templateUrl: 'partials/project-list.html',
-            controller: 'CRUDController'
+            controller: 'CRUDController',
+                    resolve: resolveDetails(['project'])
         }).
-        when('/project/new/collection_name/:collectionName', {
+        when('/project/new', {
             templateUrl: 'partials/project-new.html',
-            controller: 'CRUDController'
-        }).
-        when('/project/update/:id/collection_name/:collectionName', {
+            controller: 'CRUDController',
+            resolve: resolveDetails(['project'])})
+       .when('/project/update/:id', {
             templateUrl: 'partials/project-update.html',
-            controller: 'CRUDController'
-        }).
-        when('/action/leave', {
+            controller: 'CRUDController',
+           resolve: resolveDetails(['project'])})
+        .when('/action/leave', {
             //TODO
             templateUrl: 'partials/',
             controller: 'ActionController'
