@@ -24,6 +24,10 @@ app.config(['$routeProvider',
             templateUrl: 'partials/employee-new.html',
             controller: 'CRUDController',
             resolve: resolveDetails(['employee', 'project'])})
+        .when('/employee/update/:id', {
+            templateUrl: 'partials/employee-update.html',
+            controller: 'CRUDController',
+            resolve: resolveDetails(['employee', 'project'])})
         .when('/actions', {
             templateUrl: 'partials/action-list.html',
             controller: 'ActionController'

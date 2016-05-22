@@ -34,14 +34,23 @@ crudControllerModule.controller('CRUDController', function($scope, $http, $route
     }
 
     function loadDocument() {
-        var cacheKey = collections.data[0] + 'list';
-        var documents = dataCache.get(cacheKey);
-        for (var index = 0; index < documents.length; index++) {
-            var document = documents[index];
-            if (document._id == updateDocumentId) {
-                $scope.document = document;
-                break;
+        var collectionsArray = collections.data;
+        for (var collectionsIndex = 0; collectionsIndex < collectionsArray.length; collectionsIndex++) {
+            var colelctionsName=  collectionsArray[collectionsIndex];
+            var cacheKey = colelctionsName + 'list';
+            var documents = dataCache.get(cacheKey);
+            if (collectionsIndex == 0) {
+                for (var index = 0; index < documents.length; index++) {
+                    var document = documents[index];
+                    if (document._id == updateDocumentId ) {
+                        $scope[colelctionsName + 'Document'] = document;
+                        break;
+                    }
+                }
+            } else {
+                $scope[colelctionsName + 'Documents'] = documents;
             }
+
         }
     }
 
@@ -72,17 +81,17 @@ crudControllerModule.controller('CRUDController', function($scope, $http, $route
     }
 
     $scope.updateDocument = function(collectionName){
-        console.log("collectionName" + collectionName);
+        console.log("updateDocument, collectionName" + collectionName);
         //console.log($scope.test)
 
         var successCallback = function (response){
-            console.log("received success response for POST request, response :" + JSON.stringify(response));
+            console.log("received success response for PUT request, response :" + JSON.stringify(response));
             $scope.isAddDocumentSuccessful = true;
             $scope.isResponseReceivedFromServer = true;
             $scope.status = response.data;
         }
         var errorCallback = function (response) {
-            console.log("received error response for POST request, response :" + JSON.stringify(response));
+            console.log("received error response for PUT request, response :" + JSON.stringify(response));
             $scope.isResponseReceivedFromServer = true;
             if(response.status == 400) {
                 $scope.status = response.data;
@@ -92,14 +101,14 @@ crudControllerModule.controller('CRUDController', function($scope, $http, $route
             }
         }
 
-        $http.put("/crud/rest/" + collectionName, $scope.document).then(successCallback, errorCallback);
+        $http.put("/crud/rest/" + collectionName, $scope[collectionName + 'Document']).then(successCallback, errorCallback);
 
     }
 
     $scope.deleteDocument = function(collectionName, id){
         $http.delete("/crud/rest/" + collectionName + "/" +id).success(function (response){
             console.log("received success response for DELETE request")
-        refresh(true);
+        refresh(true, collectionName);
         });
     }
 });

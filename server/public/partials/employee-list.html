@@ -21,10 +21,10 @@
                 <a href="#/employee-actions/employee/{{employee.id}}">View actions</a>
             </td>
             <td>
-                <a href="#/employee-actions/employee/{{employee.id}}">Update</a>
+                <a href="#/employee/update/{{employee._id}}">Update</a>
             </td>
             <td>
-                <button ng-click="deleteDocument('project', project._id)">Remove</button>
+                <button ng-click="deleteDocument('employee', employee._id)">Remove</button>
             </td>
         </tr>
         </tbody>
