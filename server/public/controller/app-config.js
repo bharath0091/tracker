@@ -1,5 +1,5 @@
 
-var app = angular.module('trackerApp', ['ngRoute', 'employeeController', 'actionController', 'actionViewController', 'employeeActionsController', 'employeeActionController', 'defaultersController', 'giveDataController', 'crudController', 'directives']);
+var app = angular.module('trackerApp', ['ngRoute', 'actionController', 'actionViewController', 'employeeActionsController', 'employeeActionController', 'defaultersController', 'giveDataController', 'crudController', 'directives']);
 
 function resolveDetails(dataArray) {
 return {
@@ -30,17 +30,18 @@ app.config(['$routeProvider',
             resolve: resolveDetails(['employee', 'project'])})
         .when('/actions', {
             templateUrl: 'partials/action-list.html',
-            controller: 'ActionController'
+            controller: 'CRUDController',
+            resolve: resolveDetails(['action', 'project'])
         }).
         when('/action/new', {
             templateUrl: 'partials/action-new.html',
-            controller: 'ActionController'
-        }).
-        when('/action/view/:viewActionId', {
-            templateUrl: 'partials/action-view.html',
-            controller: 'ActionViewController'
-        }).
-        when('/employee-actions/employee/:employeeId', {
+            controller: 'CRUDController',
+            resolve: resolveDetails(['action', 'project'])})
+        .when('/action/update/:id', {
+            templateUrl: 'partials/action-update.html',
+            controller: 'CRUDController',
+            resolve: resolveDetails(['action', 'project'])})
+        .when('/employee-actions/employee/:employeeId', {
             templateUrl: 'partials/employee-actions-view.html',
             controller: 'EmployeeActionsController'
         }).

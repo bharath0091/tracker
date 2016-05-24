@@ -8,7 +8,7 @@ directivesModule.directive('actionRow', function($compile){
         link: function($scope , element){
             element.bind("click", function(e){
                 initializeAction($scope);
-                var childNode = $compile('<input ng-model="action.fields[' +counter +'].name" type="text" placeholder="Enter new field name">  <select ng-model="action.fields[' + counter + '].type" ><option value="text" disabled selected>Select field type</option> <option value="text">text</option><option value="date">date</option></select> <br><br>')($scope);
+                var childNode = $compile('<input ng-model="document.fields[' +counter +'].name" type="text" placeholder="Enter new field name">  <select ng-model="document.fields[' + counter + '].type" ><option value="text" disabled selected>Select field type</option> <option value="text">text</option><option value="date">date</option></select> <br><br>')($scope);
                 counter++;
                 element.parent().prepend(childNode);
             });
@@ -21,10 +21,10 @@ directivesModule.directive('actionRow', function($compile){
 
 function initializeAction($scope){
     console.log($scope);
-    console.log($scope.action);
-    if ($scope.action == undefined) {
-        $scope.action = {};
+    console.log($scope.document);
+    if ($scope.document == undefined) {
+        $scope.document = {};
     }
-    $scope.action.fields = [];
+    $scope.document.fields = [];
 }
 
