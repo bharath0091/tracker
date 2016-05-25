@@ -2,7 +2,7 @@ var defaultersControllerModule = angular.module('defaultersController', []);
 
 defaultersControllerModule.controller('DefaultersController', function ($scope, $http) {
     function onLoad() {
-        $http.get("/action/rest/list").success(function (response) {
+        $http.get("/crud/rest/list/" + 'action').success(function (response) {
                 $scope.actions = response;
                 console.log("received success response for GET request")
             }

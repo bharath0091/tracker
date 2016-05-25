@@ -41,7 +41,7 @@ function getEmployeesAndActionData(actionId, callback) {
     mongoUtil.getDocumentById('action', actionId, function(data){
         var action = data[0];
         console.log("action : " + JSON.stringify(action))
-        mongoUtil.getDocuments('employees', {project : action.assignedTo}, function(data){
+        mongoUtil.getDocuments('employee', {project : action.assignedTo}, function(data){
             var employees = data;
             mongoUtil.getDocuments('data', {actionId : actionId}, function(data) {
                 callback(employees, data);

@@ -5,7 +5,7 @@
 
 module.exports = {
     //TODO check if email id and given project name are valid
-    name : 'NewActionValidator',
+    name : 'UpdateActionValidator',
     validate: function (action, callback) {
         var status = basicChecks(action);
         if (status.success) {
@@ -16,17 +16,22 @@ module.exports = {
     }
 }
 
-function checksAgainstDb(action, callback) {
+function checksAgainstDb(newAction, callback) {
     var mongoUtil = require('../mongoutil');
     var status = require("../domain/status.js");
     mongoUtil.connectToServer(function(err) {
         console.dir(err);
-        mongoUtil.getDocumentByFieldName('action', 'name', action.name, function(data){
-            console.log('data ' + JSON.stringify(data));
-            console.log('id ' + action.id);
-            console.log(data.length);
-            if (data && data.length > 0) {
-                callback(new status(false, 'Given Action name is already present'));
+        mongoUtil.getDocumentByFieldName('action', 'name', newAction.name, function(data){
+            var isDuplicate = false;
+            for	(var index = 0; index < data.length; index++) {
+                var action = data[index];
+                if(newAction.name == action.name && !(newAction._id == undefined || newAction._id == action._id)){
+                    isDuplicate = true;
+                    break;
+                }
+            }
+            if (isDuplicate) {
+                callback(new status(false, 'duplicate action name'));
             } else {
                 callback(new status(true, 'ok'));
             }

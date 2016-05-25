@@ -19,7 +19,7 @@ process.on('uncaughtException', function (err) {
 });
 
 router.get('/rest/employee-actions-by-employee-id/:employeeId', function(req, res) {
-    mongoUtil.getDocuments('employees', {id : req.params.employeeId}, function(data){
+    mongoUtil.getDocuments('employee', {id : req.params.employeeId}, function(data){
         var employee = data[0];
         mongoUtil.getDocuments('action', {assignedTo : employee.project}, function(data){
             employee.actions = data;
@@ -30,7 +30,7 @@ router.get('/rest/employee-actions-by-employee-id/:employeeId', function(req, re
   });
 
 router.get('/rest/employee-action-by-their-ids/:employeeId/:actionId', function(req, res) {
-    mongoUtil.getDocuments('employees', {id : req.params.employeeId}, function(data){
+    mongoUtil.getDocuments('employee', {id : req.params.employeeId}, function(data){
         var employee = data[0];
         mongoUtil.getDocumentById('action', req.params.actionId, function(data){
             employee.action =  data[0];

@@ -8,7 +8,6 @@ app.use(bodyParser.json());
 
 app.use('/crud', require('./crud'));
 app.use('/employee', require('./employee'));
-app.use('/action', require('./action'));
 app.use('/employee-actions', require('./employee-actions'));
 app.use('/defaulters', require('./defaulters'));
 
