@@ -1,12 +1,17 @@
 <div>
 <div ng-init="collection='project'"/>
-    <a style="position:absolute; right: 10px; font-size: 20px; font-weight:bold" href="#/project/new">Add new project</a><br><br>
-    <h2>Project list</h2><br>
-    <table border="1" style="width:100%">
+    <h2>Project list</h2>
+    <div class="add-link">
+        <a href="#/project/new">+ Add new project</a>
+    </div>
+
+    <table class="list-table">
         <thead>
         <tr>
             <th>Project Name</th>
             <th>Description</th>
+            <th>Update</th>
+            <th>Delete</th>
         </tr>
         </thead>
         <tbody>
@@ -14,10 +19,10 @@
             <td>{{project.name}}</td>
             <td>{{project.description}}</td>
             <td>
-                <button ng-click="deleteDocument('project', project._id)">remove</button>
+                <a href="#/project/update/{{project._id}}">Update</a><br><br>
             </td>
             <td>
-            <a href="#/project/update/{{project._id}}">Update</a><br><br>
+                <button ng-click="deleteDocument('project', project._id)">Delete</button>
             </td>
         </tr>
         </tbody>

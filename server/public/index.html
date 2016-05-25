@@ -2,7 +2,7 @@
 <html ng-app="trackerApp">
 <head>
     <title> Tracker </title>
-    <!--<link rel="stylesheet" href="bootstrap.css" />-->
+    <link rel="stylesheet" href="css/styles.css" type="text/css" />
     <script src="ext/angular-1.4.7.js"></script>
     <script src="ext/angular-route-1.4.7.js"></script>
 
@@ -19,32 +19,32 @@
 </head>
 
 <body>
-<div style="width: 1500px; border: solid 5px; position:fixed;">
-<div style="width: 200px; height:700px; background-color: darkseagreen; font-family: 'Arial Black'">
-    <div >
-        <a href="#/projects" >Projects</a>
-    </div>
-    <div >
-        <a href="#/employees" >Employees</a>
-    </div>
-    <div>
-        <a href="#/actions" >Actions</a>
-    </div>
-    <div>
-        <a href="#/defaulters" >Defaulters</a>
-    </div>
-    <div>
-        <a href="#/report" >Report</a>
-    </div>
 
-    <div>
-        <a href="#/give-data/569b6323c3439cfc2797f7f6" >Give data</a>
-        <!--<a href="#/give-data/employee/1/action/569b6323c3439cfc2797f7f6" >Give data</a>-->
-    </div>
+<div style="position:absolute; top:70px;" id="menu">
+    <ul>
+
+        <li >
+            <a href="#/projects" >Projects</a>
+        </li>
+        <li >
+            <a href="#/employees" >Employees</a>
+        </li>
+        <li>
+            <a href="#/actions" >Actions</a>
+        </li>
+        <li>
+            <a href="#/defaulters" >Defaulters</a>
+        </li>
+        <li>
+            <a href="#/report" >Report</a>
+        </li>
+        <li>
+            <a href="#/give-data/569b6323c3439cfc2797f7f6" >Give data</a>
+        </li>
+    </ul>
 </div>
 
-<div style="position:absolute; left:200px; top:30px; width: 1000px; margin: 50px" ng-view>
-</div>
-</div>
+<div style="position:absolute; left:300px; top:10px; width: 80%; margin: 50px" ng-view></div>
+
 </body>
 </html>

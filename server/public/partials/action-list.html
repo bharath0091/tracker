@@ -1,13 +1,17 @@
 <div>
-    <a style="position:absolute; right: 10px; font-size: 20px; font-weight:bold" href="#/action/new">Add new action</a><br><br>
     <h2>Action list</h2><br>
-    <table border="1" style="width:100%">
+    <div class="add-link">
+        <a href="#/action/new">+ Add new action</a><br><br>
+    </div>
+    <table class="list-table">
         <thead>
         <tr>
             <th>Name</th>
             <th>Active ?</th>
             <th>Project</th>
             <th>Last date</th>
+            <th>Update</th>
+            <th>Delete</th>
         </tr>
         </thead>
         <tbody>
@@ -20,7 +24,7 @@
                 <a href="#/action/update/{{action._id}}">Update</a>
             </td>
             <td>
-                <button ng-click="deleteDocument('action', action._id)">Remove</button>
+                <button ng-click="deleteDocument('action', action._id)">Delete</button>
             </td>
         </tr>
         </tbody>
