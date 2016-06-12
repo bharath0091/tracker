@@ -7,7 +7,7 @@ var _db;
 module.exports = {
 
   connectToServer : function( callback ) {
-                        MongoClient.connect( "mongodb://chennupati.bharath@gmail.com:mongo9876@waffle.modulusmongo.net:27017/ujoWe5my", function( err, db ) {
+      MongoClient.connect( "mongodb://localhost:27017/employees", function( err, db ) {
                           _db = db;
                            callback( err ); //return callback( err ); TODOD : What is the use of return here?
                         } );
@@ -39,6 +39,10 @@ module.exports = {
   insertOneDocument : function (collectionName, document) {
                         return this.getCollection(collectionName).insertOne(document);
                      },
+  insertDocuments : function (collectionName, documents) {
+      console.log("okkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+      return this.getCollection(collectionName).insert(documents);
+   },
   updateDocument : function (collectionName, document) {
       document._id = ObjectID(document._id);
       return this.getCollection(collectionName).replaceOne({_id : document._id}, document);

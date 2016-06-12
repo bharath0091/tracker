@@ -15,11 +15,15 @@
   "dependencies": {
     "angular-file-upload": "^2.2.0",
     "body-parser": "^1.14.1",
+    "excel-export": "^0.5.1",
     "exceljs": "^0.2.4",
     "express": "^4.13.3",
+    "formidable": "^1.0.17",
     "mangojs": "0.0.2",
     "mongodb": "^2.0.48",
     "multer": "^1.1.0",
-    "nodeunit": "^0.9.1"
+    "nodeunit": "^0.9.1",
+    "xls-to-json": "^0.3.2",
+    "xlsx-to-json": "^0.2.4"
   }
 }

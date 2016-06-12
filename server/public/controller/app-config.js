@@ -1,5 +1,5 @@
 
-var app = angular.module('trackerApp', ['ngRoute', 'actionController', 'actionViewController', 'employeeActionsController', 'employeeActionController', 'defaultersController', 'giveDataController', 'crudController', 'directives']);
+var app = angular.module('trackerApp', ['ngRoute', 'actionController', 'actionViewController', 'employeeActionsController', 'employeeActionController', 'defaultersController', 'giveDataController', 'crudController', 'directives', 'xlController']);
 
 function resolveDetails(dataArray) {
 return {
@@ -24,6 +24,9 @@ app.config(['$routeProvider',
             templateUrl: 'partials/employee-new.html',
             controller: 'CRUDController',
             resolve: resolveDetails(['employee', 'project'])})
+        .when('/employee/import', {
+            templateUrl: 'partials/employee-import.html',
+            controller: 'XLController'})
         .when('/employee/update/:id', {
             templateUrl: 'partials/employee-update.html',
             controller: 'CRUDController',

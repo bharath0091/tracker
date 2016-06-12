@@ -24,7 +24,6 @@ function checksAgainstDb(employee, callback) {
         mongoUtil.getDocumentByFieldName('employee', 'id', employee.id, function(data){
             console.log('data ' + JSON.stringify(data));
             console.log('id ' + employee.id);
-            console.log(data.length);
             if (data && data.length > 0) {
                 callback(new status(false, 'Given employee id is already present'));
             } else {
